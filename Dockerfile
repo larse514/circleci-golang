@@ -11,5 +11,9 @@ RUN wget "s3.amazonaws.com/aws-cli/awscli-bundle.zip" -O "awscli-bundle.zip" && 
     sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws && \
     rm awscli-bundle.zip && \
     rm -rf awscli-bundle
+RUN go get github.com/kevinburke/go-bindata
+WORKDIR /go/src/github.com/kevinburke/go-bindata/go-bindata
+RUN go build
+WORKDIR /
 
 ENTRYPOINT ["/bin/bash"]
