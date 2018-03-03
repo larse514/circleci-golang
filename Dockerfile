@@ -11,9 +11,12 @@ RUN wget "s3.amazonaws.com/aws-cli/awscli-bundle.zip" -O "awscli-bundle.zip" && 
     sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws && \
     rm awscli-bundle.zip && \
     rm -rf awscli-bundle
-RUN go get github.com/kevinburke/go-bindata
-WORKDIR /go/src/github.com/kevinburke/go-bindata/go-bindata
-RUN go build
+
+RUN set -x \
+    VER="17.12.1-ce" \
+    curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz \
+    tar -xz -C /tmp -f /tmp/docker-$VER.tgz \
+    mv /tmp/docker/* /usr/bin
 WORKDIR /
 
 ENTRYPOINT ["/bin/bash"]
