@@ -12,6 +12,11 @@ RUN wget "s3.amazonaws.com/aws-cli/awscli-bundle.zip" -O "awscli-bundle.zip" && 
     rm awscli-bundle.zip && \
     rm -rf awscli-bundle
 
+#Install newman 
+RUN sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - && \
+    sudo sudo apt-get install -y nodejs && \
+    sudo npm install newman -g
+
 RUN set -x \
     VER="17.12.1-ce" \
     curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz \
