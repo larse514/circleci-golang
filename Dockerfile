@@ -1,4 +1,4 @@
-FROM circleci/golang:1.9
+FROM circleci/golang:1.13.5-stretch-node-browsers-legacy
 MAINTAINER ops@spaceback.me
 
 # Install awscli
